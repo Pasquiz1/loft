@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loft dell'Uva</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background: #f6eef8;
+      color: #3a003a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .logo {
+      width: 80px;
+      margin: 1rem auto;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin: 0.5rem 0;
+    }
+
+    p.bio {
+      font-size: 1rem;
+      color: #5e3d5e;
+      margin-bottom: 2rem;
+    }
+
+    .link {
+      background: #a94bbd;
+      color: white;
+      text-decoration: none;
+      display: block;
+      padding: 1rem;
+      margin: 0.5rem 0;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+
+    .link:hover {
+      background: #913fa5;
+    }
+
+    .slider-container {
+      position: relative;
+      width: 100%;
+      height: 280px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+      border-radius: 12px;
+    }
+
+    .slider-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slide {
+      min-width: 100%;
+      flex-shrink: 0;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+      background-color: rgba(255, 255, 255, 0.7);
+      border-radius: 50%;
+      padding: 0.3rem 0.6rem;
+      cursor: pointer;
+      user-select: none;
+      z-index: 10;
+    }
+
+    .arrow:hover {
+      background-color: rgba(255, 255, 255, 1);
+    }
+
+    .arrow.left {
+      left: 10px;
+    }
+
+    .arrow.right {
+      right: 10px;
+    }
+
+    .footer {
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: #7d547d;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="logo.png" alt="Logo Loft dell'Uva" class="logo" />
+    <h1>Loft dell'Uva</h1>
+    <p class="bio">BnB nel cuore di Rutigliano 🍇 a due passi da Bari</p>
+
+    <!-- SLIDER -->
+    <div class="slider-container">
+      <div class="arrow left" onclick="prevSlide()">‹</div>
+      <div class="slider-track" id="slider"></div>
+      <div class="arrow right" onclick="nextSlide()">›</div>
+    </div>
+
+    <!-- LINK PRENOTAZIONE -->
+    <a class="link" href="https://www.booking.com/Share-riv4X28" target="_blank">Prenota su Booking</a>
+    <a class="link" href="https://www.airbnb.it/rooms/1030241864530648470?guests=1&adults=1&s=67&unique_share_id=85354972-de19-4551-b3d0-263e808d8610" target="_blank">Prenota su Airbnb</a>
+
+    <!-- LINK NOLEGGIO -->
+    <a class="link" href="https://www.instagram.com/lorussorentalcar?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
+      🚗 Noleggio auto con Lorusso Rental Car
+    </a>
+
+    <div class="footer">
+      © 2025 Loft dell'Uva
+    </div>
+  </div>
+
+  <script>
+    const sliderTrack = document.getElementById('slider');
+    const totalImages = 15;
+    let currentIndex = 0;
+    let autoSlideInterval;
+
+    for (let i = 1; i <= totalImages; i++) {
+      const slide = document.createElement('div');
+      slide.classList.add('slide');
+      const img = document.createElement('img');
+      img.src = `${i}.jpg`;
+      img.alt = `Foto ${i}`;
+      slide.appendChild(img);
+      sliderTrack.appendChild(slide);
+    }
+
+    function updateSlider() {
+      sliderTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % totalImages;
+      updateSlider();
+      resetAutoSlide();
+    }
+
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+      updateSlider();
+      resetAutoSlide();
+    }
+
+    function startAutoSlide() {
+      autoSlideInterval = setInterval(nextSlide, 12000);
+    }
+
+    function resetAutoSlide() {
+      clearInterval(autoSlideInterval);
+      startAutoSlide();
+    }
+
+    updateSlider();
+    startAutoSlide();
+  </script>
+</body>
+</html>
