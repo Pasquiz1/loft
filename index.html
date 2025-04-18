@@ -1,267 +1,439 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Loft dell'Uva - BnB a Rutigliano. Prenota su Booking, Airbnb o contatta il noleggio Lorusso Rental Car." />
-    <meta name="theme-color" content="#a94bbd" />
-    <title>Loft dell'Uva</title>
-    <link rel="icon" type="image/png" href="logo.png" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loft dell'Uva - Rutigliano (BA)</title>
+    <meta name="description" content="Scopri il Loft dell'Uva, un incantevole B&B a Rutigliano (BA). Prenota la tua vacanza perfetta.">
+    <meta property="og:title" content="Loft dell'Uva - Rutigliano (BA)">
+    <meta property="og:description" content="Scopri il Loft dell'Uva, un incantevole B&B a Rutigliano (BA)">
+    <meta property="og:image" content="https://example.com/logo.png">
+    <meta property="og:url" content="https://example.com">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', sans-serif;
-            background: #f6eef8;
-            color: #3a003a;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 500px;
-            padding: 2rem;
-            text-align: center;
-            box-sizing: border-box;
-        }
-
-        .logo {
-            width: 80px;
-            margin: 1rem auto;
-        }
-
-        h1 {
-            font-size: 1.8rem;
-            margin: 0.5rem 0;
-        }
-
-        p.bio {
-            font-size: 1rem;
-            color: #5e3d5e;
-            margin-bottom: 2rem;
-        }
-
-        .link {
-            background: #a94bbd;
-            color: white;
-            text-decoration: none;
-            display: block;
-            padding: 1rem;
-            margin: 0.5rem 0;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: background 0.3s;
-        }
-
-        .link:hover {
-            background: #913fa5;
-        }
-
-        .slider-container {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-            margin-bottom: 2rem;
-            border-radius: 12px;
-            height: 250px;
-        }
-
-        .slider-track {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .slide {
-            min-width: 100%;
-            flex-shrink: 0;
-        }
-
-        .slide img {
+        /* PRELOADER */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Cambiato da contain a cover */
-            object-position: center;
-            background-color: #ffffff;
-            border-radius: 12px;
+            background: #e2d1f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
         }
-
-        .arrow {
+        
+        .preloader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #fff;
+            border-top-color: #ff9a9e;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* RESET E BASI */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #e2d1f9;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 100%;
+            opacity: 0;
+            animation: fadeIn 0.5s 0.5s forwards;
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        .logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 15px;
+            transition: transform 0.3s;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        h1 {
+            font-weight: 700;
+            font-size: 28px;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+        
+        .location {
+            font-size: 16px;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+        
+        /* CAROSELLO */
+        .carousel {
+            position: relative;
+            margin: 0 auto 40px;
+            max-width: 600px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+        
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .carousel-item {
+            min-width: 100%;
+            position: relative;
+        }
+        
+        .carousel-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            max-height: 400px;
+            object-fit: cover;
+        }
+        
+        .carousel-control {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 2rem;
-            background-color: rgba(255, 255, 255, 0.7);
+            background-color: rgba(255,255,255,0.7);
+            border: none;
+            color: #2c3e50;
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            padding: 0.3rem 0.6rem;
             cursor: pointer;
-            user-select: none;
             z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
         }
-
-        .arrow:hover {
-            background-color: rgba(255, 255, 255, 1);
+        
+        .carousel-control:hover {
+            background-color: rgba(255,255,255,0.9);
         }
-
-        .arrow.left {
-            left: 10px;
+        
+        .carousel-control.prev {
+            left: 15px;
         }
-
-        .arrow.right {
-            right: 10px;
+        
+        .carousel-control.next {
+            right: 15px;
         }
-
-        .footer {
-            margin-top: 2rem;
-            font-size: 0.85rem;
-            color: #7d547d;
+        
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 15px 0 30px;
         }
-
-        @media (max-width: 480px) {
+        
+        .carousel-indicators span {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ccc;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .carousel-indicators span.active {
+            background-color: #ff9a9e;
+        }
+        
+        /* PULSANTI */
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .btn {
+            display: block;
+            padding: 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: white;
+            text-align: center;
+        }
+        
+        .btn-booking {
+            background-color: #003580;
+        }
+        
+        .btn-booking:hover {
+            background-color: #0048a3;
+            transform: translateY(-2px);
+        }
+        
+        .btn-airbnb {
+            background-color: #FF5A5F;
+        }
+        
+        .btn-airbnb:hover {
+            background-color: #ff767b;
+            transform: translateY(-2px);
+        }
+        
+        .btn-rental {
+            background-color: #ff9a9e; /* Rosso pastello */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn-rental:hover {
+            background-color: #ff7b81; /* Rosso pastello più scuro */
+            transform: translateY(-2px);
+        }
+        
+        .btn-share {
+            background-color: #6e45e2;
+            margin-top: 20px;
+        }
+        
+        .btn-share:hover {
+            background-color: #7d55ff;
+            transform: translateY(-2px);
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
             h1 {
-                font-size: 1.4rem;
+                font-size: 24px;
             }
-
-            .link {
-                font-size: 0.95rem;
-                padding: 0.9rem;
+            
+            .location {
+                font-size: 14px;
             }
-
-            .arrow {
-                font-size: 1.5rem;
-            }
-
-            .slider-container {
-                height: 200px;
+            
+            .carousel-item img {
+                max-height: 300px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="logo.png" alt="Logo Loft dell'Uva" class="logo" />
-        <h1>Loft dell'Uva</h1>
-        <p class="bio">Il tuo BnB a Rutigliano</p>
-
-        <div class="slider-container">
-            <div class="arrow left" onclick="moveSlide(-1)">&#10094;</div>
-            <div class="slider-track" id="slider">
-                <div class="slide">
-                    <picture>
-                        <source media="(max-width: 600px)" srcset="1_small.jpg">
-                        <img src="1.jpg" alt="foto 1">
-                    </picture>
-                </div>
-                <div class="slide">
-                    <picture>
-                        <source media="(max-width: 600px)" srcset="2_small.jpg">
-                        <img src="2.jpg" alt="foto 2">
-                    </picture>
-                </div>
-                <div class="slide">
-                    <picture>
-                        <source media="(max-width: 600px)" srcset="3_small.jpg">
-                        <img src="3.jpg" alt="foto 3">
-                    </picture>
-                </div>
-                <div class="slide">
-                    <picture>
-                        <source media="(max-width: 600px)" srcset="4_small.jpg">
-                        <img src="4.jpg" alt="foto 4">
-                    </picture>
-                </div>
-                <div class="slide">
-                    <picture>
-                        <source media="(max-width: 600px)" srcset="5_small.jpg">
-                        <img src="5.jpg" alt="foto 5">
-                    </picture>
-                </div>
-                <div class="slide">
-                    <picture>
-                        <source media="(max-width: 600px)" srcset="6_small.jpg">
-                        <img src="6.jpg" alt="foto 6">
-                    </picture>
-                </div>
-                <div class="slide">
-                    <picture>
-                        <source media="(max-width: 600px)" srcset="7_small.jpg">
-                        <img src="7.jpg" alt="foto 7">
-                    </picture>
-                </div>
-                <div class="slide">
-                    <picture>
-                        <source media="(max-width: 600px)" srcset="8_small.jpg">
-                        <img src="8.jpg" alt="foto 8">
-                    </picture>
-                </div>
-                <div class="slide">
-                    <picture>
-                        <source media="(max-width: 600px)" srcset="9_small.jpg">
-                        <img src="9.jpg" alt="foto 9">
-                    </picture>
-                </div>
-                <div class="slide">
-                    <picture>
-                        <source media="(max-width: 600px)" srcset="10_small.jpg">
-                        <img src="10.jpg" alt="foto 10">
-                    </picture>
-                </div>
-                <div class="slide">
-                    <picture>
-                        <source media="(max-width: 600px)" srcset="11_small.jpg">
-                        <img src="11.jpg" alt="foto 11">
-                    </picture>
-                </div>
-                <div class="slide">
-                    <picture>
-                        <source media="(max-width: 600px)" srcset="12_small.jpg">
-                        <img src="12.jpg" alt="foto 12">
-                    </picture>
-                </div>
-                <div class="slide">
-                    <picture>
-                        <source media="(max-width: 600px)" srcset="13_small.jpg">
-                        <img src="13.jpg" alt="foto 13">
-                    </picture>
-                </div>
-                <div class="slide">
-                    <picture>
-                        <source media="(max-width: 600px)" srcset="14_small.jpg">
-                        <img src="14.jpg" alt="foto 14">
-                    </picture>
-                </div>
-                <div class="slide">
-                    <picture>
-                        <source media="(max-width: 600px)" srcset="15_small.jpg">
-                        <img src="15.jpg" alt="foto 15">
-                    </picture>
-                </div>
-            </div>
-            <div class="arrow right" onclick="moveSlide(1)">&#10095;</div>
-        </div>
-
-        <a class="link" href="https://www.booking.com/Share-riv4X28" target="_blank">Prenota su Booking</a>
-        <a class="link" href="https://www.airbnb.it/rooms/1030241864530648470" target="_blank">Prenota su Airbnb</a>
-        <a class="link" href="https://www.instagram.com/lorussorentalcar" target="_blank">Lorusso Rental Car</a>
+    <div class="preloader">
+        <div class="preloader-spinner"></div>
     </div>
 
-    <div class="footer">&copy; 2025 Loft dell'Uva</div>
+    <div class="container">
+        <img src="logo.png" alt="Logo B&B" class="logo">
+        <h1>Loft dell'Uva</h1>
+        <p class="location">Rutigliano (BA)</p>
+        
+        <div class="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item">
+                    <img src="1.jpg" alt="Foto del Loft dell'Uva 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="2.jpg" alt="Foto del Loft dell'Uva 2">
+                </div>
+                <div class="carousel-item">
+                    <img src="3.jpg" alt="Foto del Loft dell'Uva 3">
+                </div>
+                <div class="carousel-item">
+                    <img src="4.jpg" alt="Foto del Loft dell'Uva 4">
+                </div>
+                <div class="carousel-item">
+                    <img src="5.jpg" alt="Foto del Loft dell'Uva 5">
+                </div>
+                <div class="carousel-item">
+                    <img src="6.jpg" alt="Foto del Loft dell'Uva 6">
+                </div>
+                <div class="carousel-item">
+                    <img src="7.jpg" alt="Foto del Loft dell'Uva 7">
+                </div>
+                <div class="carousel-item">
+                    <img src="8.jpg" alt="Foto del Loft dell'Uva 8">
+                </div>
+                <div class="carousel-item">
+                    <img src="9.jpg" alt="Foto del Loft dell'Uva 9">
+                </div>
+                <div class="carousel-item">
+                    <img src="10.jpg" alt="Foto del Loft dell'Uva 10">
+                </div>
+                <div class="carousel-item">
+                    <img src="11.jpg" alt="Foto del Loft dell'Uva 11">
+                </div>
+                <div class="carousel-item">
+                    <img src="12.jpg" alt="Foto del Loft dell'Uva 12">
+                </div>
+                <div class="carousel-item">
+                    <img src="13.jpg" alt="Foto del Loft dell'Uva 13">
+                </div>
+                <div class="carousel-item">
+                    <img src="14.jpg" alt="Foto del Loft dell'Uva 14">
+                </div>
+                <div class="carousel-item">
+                    <img src="15.jpg" alt="Foto del Loft dell'Uva 15">
+                </div>
+            </div>
+            <button class="carousel-control prev">&lt;</button>
+            <button class="carousel-control next">&gt;</button>
+        </div>
+        
+        <div class="carousel-indicators"></div>
+        
+        <div class="btn-container">
+            <a href="https://www.booking.com/Share-3QgkBrr" class="btn btn-booking">Prenota su Booking</a>
+            <a href="https://www.airbnb.it/rooms/1030241864530648470" class="btn btn-airbnb">Prenota su AirBnb</a>
+            <a href="https://www.instagram.com/lorussorentalcar" class="btn btn-rental">🚗 Lorusso Rental Car 🚗</a>
+            <button class="btn btn-share">Condividi questa pagina</button>
+        </div>
+    </div>
 
     <script>
-        let index = 0;
-        const slides = document.querySelectorAll('.slide');
-        const slider = document.getElementById('slider');
-
-        function moveSlide(step) {
-            index += step;
-            if (index < 0) index = slides.length - 1;
-            else if (index >= slides.length) index = 0;
-            slider.style.transform = `translateX(-${index * 100}%)`;
-        }
-
-        setInterval(() => moveSlide(1), 7000);
+        document.addEventListener('DOMContentLoaded', function() {
+            // CAROSELLO
+            const carouselInner = document.querySelector('.carousel-inner');
+            const items = document.querySelectorAll('.carousel-item');
+            const prevBtn = document.querySelector('.prev');
+            const nextBtn = document.querySelector('.next');
+            const indicatorsContainer = document.querySelector('.carousel-indicators');
+            let currentIndex = 0;
+            
+            // Crea indicatori
+            items.forEach((_, index) => {
+                const indicator = document.createElement('span');
+                indicator.addEventListener('click', () => {
+                    goToIndex(index);
+                });
+                indicatorsContainer.appendChild(indicator);
+            });
+            
+            function goToIndex(index) {
+                currentIndex = index;
+                updateCarousel();
+            }
+            
+            function updateCarousel() {
+                const offset = -currentIndex * 100;
+                carouselInner.style.transform = `translateX(${offset}%)`;
+                
+                // Aggiorna indicatori
+                document.querySelectorAll('.carousel-indicators span').forEach((ind, i) => {
+                    ind.classList.toggle('active', i === currentIndex);
+                });
+            }
+            
+            function goToPrev() {
+                currentIndex = (currentIndex <= 0) ? items.length - 1 : currentIndex - 1;
+                updateCarousel();
+            }
+            
+            function goToNext() {
+                currentIndex = (currentIndex >= items.length - 1) ? 0 : currentIndex + 1;
+                updateCarousel();
+            }
+            
+            prevBtn.addEventListener('click', goToPrev);
+            nextBtn.addEventListener('click', goToNext);
+            
+            // Swipe per mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            carouselInner.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].clientX;
+            }, { passive: true });
+            
+            carouselInner.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].clientX;
+                handleSwipe();
+            }, { passive: true });
+            
+            function handleSwipe() {
+                const diff = touchStartX - touchEndX;
+                if (diff > 50) goToNext();
+                if (diff < -50) goToPrev();
+            }
+            
+            // Navigazione da tastiera
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') goToPrev();
+                if (e.key === 'ArrowRight') goToNext();
+            });
+            
+            // CONDIVISIONE SOCIAL
+            const shareBtn = document.querySelector('.btn-share');
+            shareBtn.addEventListener('click', async () => {
+                try {
+                    await navigator.share({
+                        title: 'Loft dell\'Uva',
+                        text: 'Scopri questo incantevole B&B a Rutigliano (BA)',
+                        url: window.location.href
+                    });
+                } catch (err) {
+                    // Fallback per browser che non supportano la Web Share API
+                    const shareUrl = `https://wa.me/?text=Scopri%20Loft%20dell'Uva%20${encodeURIComponent(window.location.href)}`;
+                    window.open(shareUrl, '_blank');
+                }
+            });
+            
+            // PRELOADER
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    const preloader = document.querySelector('.preloader');
+                    preloader.style.opacity = '0';
+                    setTimeout(() => preloader.remove(), 500);
+                }, 1000);
+            });
+            
+            // Inizializza
+            updateCarousel();
+        });
     </script>
 </body>
 </html>
