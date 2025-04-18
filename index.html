@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Loft dell'Uva - BnB a Rutigliano. Prenota su Booking, Airbnb o contatta il noleggio Lorusso Rental Car." />
+  <meta name="theme-color" content="#a94bbd" />
   <title>Loft dell'Uva</title>
-  <link rel="icon" type="image/png" href="logo.png">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="logo.png" />
   <style>
     body {
       margin: 0;
@@ -24,6 +25,7 @@
       max-width: 500px;
       padding: 2rem;
       text-align: center;
+      box-sizing: border-box;
     }
 
     .logo {
@@ -61,7 +63,7 @@
     .slider-container {
       position: relative;
       width: 100%;
-      height: 280px;
+      aspect-ratio: 16 / 9;
       overflow: hidden;
       margin-bottom: 2rem;
       border-radius: 12px;
@@ -79,7 +81,7 @@
 
     .slide img {
       width: 100%;
-      height: 280px;
+      height: 100%;
       object-fit: cover;
       border-radius: 12px;
     }
@@ -114,78 +116,71 @@
       font-size: 0.85rem;
       color: #7d547d;
     }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.4rem;
+      }
+
+      .link {
+        font-size: 0.95rem;
+        padding: 0.9rem;
+      }
+
+      .arrow {
+        font-size: 1.5rem;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <img src="logo.png" alt="Logo Loft dell'Uva" class="logo" />
     <h1>Loft dell'Uva</h1>
-    <p class="bio">BnB nel cuore di Rutigliano 🍇 a due passi da Bari</p>
+    <p class="bio">Il tuo BnB a Rutigliano</p>
 
-    <!-- SLIDER -->
     <div class="slider-container">
-      <div class="arrow left" onclick="prevSlide()">‹</div>
-      <div class="slider-track" id="slider"></div>
-      <div class="arrow right" onclick="nextSlide()">›</div>
+      <div class="arrow left" onclick="moveSlide(-1)">&#10094;</div>
+      <div class="slider-track" id="slider">
+        <div class="slide"><img src="1.jpg" alt="foto 1"></div>
+        <div class="slide"><img src="2.jpg" alt="foto 2"></div>
+        <div class="slide"><img src="3.jpg" alt="foto 3"></div>
+        <div class="slide"><img src="4.jpg" alt="foto 4"></div>
+        <div class="slide"><img src="5.jpg" alt="foto 5"></div>
+        <div class="slide"><img src="6.jpg" alt="foto 6"></div>
+        <div class="slide"><img src="7.jpg" alt="foto 7"></div>
+        <div class="slide"><img src="8.jpg" alt="foto 8"></div>
+        <div class="slide"><img src="9.jpg" alt="foto 9"></div>
+        <div class="slide"><img src="10.jpg" alt="foto 10"></div>
+        <div class="slide"><img src="11.jpg" alt="foto 11"></div>
+        <div class="slide"><img src="12.jpg" alt="foto 12"></div>
+        <div class="slide"><img src="13.jpg" alt="foto 13"></div>
+        <div class="slide"><img src="14.jpg" alt="foto 14"></div>
+        <div class="slide"><img src="15.jpg" alt="foto 15"></div>
+      </div>
+      <div class="arrow right" onclick="moveSlide(1)">&#10095;</div>
     </div>
 
-    <!-- LINK PRENOTAZIONE -->
     <a class="link" href="https://www.booking.com/Share-riv4X28" target="_blank">Prenota su Booking</a>
-    <a class="link" href="https://www.airbnb.it/rooms/1030241864530648470?guests=1&adults=1&s=67&unique_share_id=85354972-de19-4551-b3d0-263e808d8610" target="_blank">Prenota su Airbnb</a>
-
-    <!-- LINK NOLEGGIO -->
-    <a class="link" href="https://www.instagram.com/lorussorentalcar?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
-      🚗 Noleggio auto con Lorusso Rental Car
-    </a>
-
-    <div class="footer">
-      © 2025 Loft dell'Uva
-    </div>
+    <a class="link" href="https://www.airbnb.it/rooms/1030241864530648470" target="_blank">Prenota su Airbnb</a>
+    <a class="link" href="https://www.instagram.com/lorussorentalcar" target="_blank">Lorusso Rental Car</a>
   </div>
 
+  <div class="footer">&copy; 2025 Loft dell'Uva</div>
+
   <script>
-    const sliderTrack = document.getElementById('slider');
-    const totalImages = 15;
-    let currentIndex = 0;
-    let autoSlideInterval;
+    let index = 0;
+    const slides = document.querySelectorAll('.slide');
+    const slider = document.getElementById('slider');
 
-    for (let i = 1; i <= totalImages; i++) {
-      const slide = document.createElement('div');
-      slide.classList.add('slide');
-      const img = document.createElement('img');
-      img.src = `${i}.jpg`;
-      img.alt = `Foto ${i}`;
-      slide.appendChild(img);
-      sliderTrack.appendChild(slide);
+    function moveSlide(step) {
+      index += step;
+      if (index < 0) index = slides.length - 1;
+      else if (index >= slides.length) index = 0;
+      slider.style.transform = `translateX(-${index * 100}%)`;
     }
 
-    function updateSlider() {
-      sliderTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
-    }
-
-    function nextSlide() {
-      currentIndex = (currentIndex + 1) % totalImages;
-      updateSlider();
-      resetAutoSlide();
-    }
-
-    function prevSlide() {
-      currentIndex = (currentIndex - 1 + totalImages) % totalImages;
-      updateSlider();
-      resetAutoSlide();
-    }
-
-    function startAutoSlide() {
-      autoSlideInterval = setInterval(nextSlide, 12000);
-    }
-
-    function resetAutoSlide() {
-      clearInterval(autoSlideInterval);
-      startAutoSlide();
-    }
-
-    updateSlider();
-    startAutoSlide();
+    setInterval(() => moveSlide(1), 7000);
   </script>
 </body>
 </html>
