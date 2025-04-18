@@ -1,192 +1,267 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Loft dell'Uva - BnB a Rutigliano. Prenota su Booking, Airbnb o contatta il noleggio Lorusso Rental Car." />
-  <meta name="theme-color" content="#a94bbd" />
-  <title>Loft dell'Uva</title>
-  <link rel="icon" type="image/png" href="logo.png" />
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', sans-serif;
-      background: #f6eef8;
-      color: #3a003a;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Loft dell'Uva - BnB a Rutigliano. Prenota su Booking, Airbnb o contatta il noleggio Lorusso Rental Car." />
+    <meta name="theme-color" content="#a94bbd" />
+    <title>Loft dell'Uva</title>
+    <link rel="icon" type="image/png" href="logo.png" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background: #f6eef8;
+            color: #3a003a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
 
-    .container {
-      width: 100%;
-      max-width: 500px;
-      padding: 2rem;
-      text-align: center;
-      box-sizing: border-box;
-    }
+        .container {
+            width: 100%;
+            max-width: 500px;
+            padding: 2rem;
+            text-align: center;
+            box-sizing: border-box;
+        }
 
-    .logo {
-      width: 80px;
-      margin: 1rem auto;
-    }
+        .logo {
+            width: 80px;
+            margin: 1rem auto;
+        }
 
-    h1 {
-      font-size: 1.8rem;
-      margin: 0.5rem 0;
-    }
+        h1 {
+            font-size: 1.8rem;
+            margin: 0.5rem 0;
+        }
 
-    p.bio {
-      font-size: 1rem;
-      color: #5e3d5e;
-      margin-bottom: 2rem;
-    }
+        p.bio {
+            font-size: 1rem;
+            color: #5e3d5e;
+            margin-bottom: 2rem;
+        }
 
-    .link {
-      background: #a94bbd;
-      color: white;
-      text-decoration: none;
-      display: block;
-      padding: 1rem;
-      margin: 0.5rem 0;
-      border-radius: 8px;
-      font-weight: 600;
-      transition: background 0.3s;
-    }
+        .link {
+            background: #a94bbd;
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
 
-    .link:hover {
-      background: #913fa5;
-    }
+        .link:hover {
+            background: #913fa5;
+        }
 
-    .slider-container {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-      margin-bottom: 2rem;
-      border-radius: 12px;
-      height: 250px;
-    }
+        .slider-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border-radius: 12px;
+            height: 250px;
+        }
 
-    .slider-track {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-    }
+        .slider-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
 
-    .slide {
-      min-width: 100%;
-      flex-shrink: 0;
-    }
+        .slide {
+            min-width: 100%;
+            flex-shrink: 0;
+        }
 
-    .slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center;
-      background-color: #ffffff;
-      border-radius: 12px;
-    }
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Cambiato da contain a cover */
+            object-position: center;
+            background-color: #ffffff;
+            border-radius: 12px;
+        }
 
-    .arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 2rem;
-      background-color: rgba(255, 255, 255, 0.7);
-      border-radius: 50%;
-      padding: 0.3rem 0.6rem;
-      cursor: pointer;
-      user-select: none;
-      z-index: 10;
-    }
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            padding: 0.3rem 0.6rem;
+            cursor: pointer;
+            user-select: none;
+            z-index: 10;
+        }
 
-    .arrow:hover {
-      background-color: rgba(255, 255, 255, 1);
-    }
+        .arrow:hover {
+            background-color: rgba(255, 255, 255, 1);
+        }
 
-    .arrow.left {
-      left: 10px;
-    }
+        .arrow.left {
+            left: 10px;
+        }
 
-    .arrow.right {
-      right: 10px;
-    }
+        .arrow.right {
+            right: 10px;
+        }
 
-    .footer {
-      margin-top: 2rem;
-      font-size: 0.85rem;
-      color: #7d547d;
-    }
+        .footer {
+            margin-top: 2rem;
+            font-size: 0.85rem;
+            color: #7d547d;
+        }
 
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 1.4rem;
-      }
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.4rem;
+            }
 
-      .link {
-        font-size: 0.95rem;
-        padding: 0.9rem;
-      }
+            .link {
+                font-size: 0.95rem;
+                padding: 0.9rem;
+            }
 
-      .arrow {
-        font-size: 1.5rem;
-      }
+            .arrow {
+                font-size: 1.5rem;
+            }
 
-      .slider-container {
-        height: 200px;
-      }
-    }
-  </style>
+            .slider-container {
+                height: 200px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <img src="logo.png" alt="Logo Loft dell'Uva" class="logo" />
-    <h1>Loft dell'Uva</h1>
-    <p class="bio">Il tuo BnB a Rutigliano</p>
+    <div class="container">
+        <img src="logo.png" alt="Logo Loft dell'Uva" class="logo" />
+        <h1>Loft dell'Uva</h1>
+        <p class="bio">Il tuo BnB a Rutigliano</p>
 
-    <div class="slider-container">
-      <div class="arrow left" onclick="moveSlide(-1)">&#10094;</div>
-      <div class="slider-track" id="slider">
-        <div class="slide"><img src="1.jpg" alt="foto 1"></div>
-        <div class="slide"><img src="2.jpg" alt="foto 2"></div>
-        <div class="slide"><img src="3.jpg" alt="foto 3"></div>
-        <div class="slide"><img src="4.jpg" alt="foto 4"></div>
-        <div class="slide"><img src="5.jpg" alt="foto 5"></div>
-        <div class="slide"><img src="6.jpg" alt="foto 6"></div>
-        <div class="slide"><img src="7.jpg" alt="foto 7"></div>
-        <div class="slide"><img src="8.jpg" alt="foto 8"></div>
-        <div class="slide"><img src="9.jpg" alt="foto 9"></div>
-        <div class="slide"><img src="10.jpg" alt="foto 10"></div>
-        <div class="slide"><img src="11.jpg" alt="foto 11"></div>
-        <div class="slide"><img src="12.jpg" alt="foto 12"></div>
-        <div class="slide"><img src="13.jpg" alt="foto 13"></div>
-        <div class="slide"><img src="14.jpg" alt="foto 14"></div>
-        <div class="slide"><img src="15.jpg" alt="foto 15"></div>
-      </div>
-      <div class="arrow right" onclick="moveSlide(1)">&#10095;</div>
+        <div class="slider-container">
+            <div class="arrow left" onclick="moveSlide(-1)">&#10094;</div>
+            <div class="slider-track" id="slider">
+                <div class="slide">
+                    <picture>
+                        <source media="(max-width: 600px)" srcset="1_small.jpg">
+                        <img src="1.jpg" alt="foto 1">
+                    </picture>
+                </div>
+                <div class="slide">
+                    <picture>
+                        <source media="(max-width: 600px)" srcset="2_small.jpg">
+                        <img src="2.jpg" alt="foto 2">
+                    </picture>
+                </div>
+                <div class="slide">
+                    <picture>
+                        <source media="(max-width: 600px)" srcset="3_small.jpg">
+                        <img src="3.jpg" alt="foto 3">
+                    </picture>
+                </div>
+                <div class="slide">
+                    <picture>
+                        <source media="(max-width: 600px)" srcset="4_small.jpg">
+                        <img src="4.jpg" alt="foto 4">
+                    </picture>
+                </div>
+                <div class="slide">
+                    <picture>
+                        <source media="(max-width: 600px)" srcset="5_small.jpg">
+                        <img src="5.jpg" alt="foto 5">
+                    </picture>
+                </div>
+                <div class="slide">
+                    <picture>
+                        <source media="(max-width: 600px)" srcset="6_small.jpg">
+                        <img src="6.jpg" alt="foto 6">
+                    </picture>
+                </div>
+                <div class="slide">
+                    <picture>
+                        <source media="(max-width: 600px)" srcset="7_small.jpg">
+                        <img src="7.jpg" alt="foto 7">
+                    </picture>
+                </div>
+                <div class="slide">
+                    <picture>
+                        <source media="(max-width: 600px)" srcset="8_small.jpg">
+                        <img src="8.jpg" alt="foto 8">
+                    </picture>
+                </div>
+                <div class="slide">
+                    <picture>
+                        <source media="(max-width: 600px)" srcset="9_small.jpg">
+                        <img src="9.jpg" alt="foto 9">
+                    </picture>
+                </div>
+                <div class="slide">
+                    <picture>
+                        <source media="(max-width: 600px)" srcset="10_small.jpg">
+                        <img src="10.jpg" alt="foto 10">
+                    </picture>
+                </div>
+                <div class="slide">
+                    <picture>
+                        <source media="(max-width: 600px)" srcset="11_small.jpg">
+                        <img src="11.jpg" alt="foto 11">
+                    </picture>
+                </div>
+                <div class="slide">
+                    <picture>
+                        <source media="(max-width: 600px)" srcset="12_small.jpg">
+                        <img src="12.jpg" alt="foto 12">
+                    </picture>
+                </div>
+                <div class="slide">
+                    <picture>
+                        <source media="(max-width: 600px)" srcset="13_small.jpg">
+                        <img src="13.jpg" alt="foto 13">
+                    </picture>
+                </div>
+                <div class="slide">
+                    <picture>
+                        <source media="(max-width: 600px)" srcset="14_small.jpg">
+                        <img src="14.jpg" alt="foto 14">
+                    </picture>
+                </div>
+                <div class="slide">
+                    <picture>
+                        <source media="(max-width: 600px)" srcset="15_small.jpg">
+                        <img src="15.jpg" alt="foto 15">
+                    </picture>
+                </div>
+            </div>
+            <div class="arrow right" onclick="moveSlide(1)">&#10095;</div>
+        </div>
+
+        <a class="link" href="https://www.booking.com/Share-riv4X28" target="_blank">Prenota su Booking</a>
+        <a class="link" href="https://www.airbnb.it/rooms/1030241864530648470" target="_blank">Prenota su Airbnb</a>
+        <a class="link" href="https://www.instagram.com/lorussorentalcar" target="_blank">Lorusso Rental Car</a>
     </div>
 
-    <a class="link" href="https://www.booking.com/Share-riv4X28" target="_blank">Prenota su Booking</a>
-    <a class="link" href="https://www.airbnb.it/rooms/1030241864530648470" target="_blank">Prenota su Airbnb</a>
-    <a class="link" href="https://www.instagram.com/lorussorentalcar" target="_blank">Lorusso Rental Car</a>
-  </div>
+    <div class="footer">&copy; 2025 Loft dell'Uva</div>
 
-  <div class="footer">&copy; 2025 Loft dell'Uva</div>
+    <script>
+        let index = 0;
+        const slides = document.querySelectorAll('.slide');
+        const slider = document.getElementById('slider');
 
-  <script>
-    let index = 0;
-    const slides = document.querySelectorAll('.slide');
-    const slider = document.getElementById('slider');
+        function moveSlide(step) {
+            index += step;
+            if (index < 0) index = slides.length - 1;
+            else if (index >= slides.length) index = 0;
+            slider.style.transform = `translateX(-${index * 100}%)`;
+        }
 
-    function moveSlide(step) {
-      index += step;
-      if (index < 0) index = slides.length - 1;
-      else if (index >= slides.length) index = 0;
-      slider.style.transform = `translateX(-${index * 100}%)`;
-    }
-
-    setInterval(() => moveSlide(1), 7000);
-  </script>
+        setInterval(() => moveSlide(1), 7000);
+    </script>
 </body>
 </html>
